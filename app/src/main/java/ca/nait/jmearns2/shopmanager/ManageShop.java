@@ -68,6 +68,8 @@ public class ManageShop extends AppCompatActivity implements View.OnClickListene
         delete.setOnClickListener(this);
         upload.setOnClickListener(this);
 
+        image = new byte[]{};
+
         etName = findViewById(R.id.edit_text_item_name);
         etPrice = findViewById(R.id.edit_text_item_price);
         imPreview = (ImageView)findViewById(R.id.image_view_preview);
@@ -98,7 +100,7 @@ public class ManageShop extends AppCompatActivity implements View.OnClickListene
     {
         switch(v.getId()) {
             case R.id.button_save_list_item: {
-                if (image.length > 0) {
+                if (image.length > 0 && etName.getText().toString().length() > 0 && etPrice.getText().toString().length() > 0) {
                     String name = etName.getText().toString();
                     float price = Float.parseFloat(etPrice.getText().toString());
 
@@ -123,7 +125,7 @@ public class ManageShop extends AppCompatActivity implements View.OnClickListene
                     image = new byte[]{};
                     imPreview.setImageBitmap(null);
                 } else {
-                    Toast.makeText(this, "Upload an image first", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Error: Must have complete details", Toast.LENGTH_SHORT).show();
                 }
                 break;
             }
